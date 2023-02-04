@@ -1,4 +1,4 @@
-import { Exercise } from "../models/exercise"
+import { Exercise } from "../models/exercise.js"
 import { v2 as cloudinary } from 'cloudinary'
 
 const create = async (req, res) => {

@@ -13,6 +13,10 @@ import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as mealsRouter } from './routes/meals.js'
 
+
+
+import { router as exercisesRouter } from './routes/exercises.js'
+
 // create the express app
 const app = express()
 
@@ -26,6 +30,7 @@ app.use(formData.parse())
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/meals', mealsRouter)
+app.use('/api/exercises', exercisesRouter )
 
 // handle 404 errors
 app.use(function (req, res, next) {
