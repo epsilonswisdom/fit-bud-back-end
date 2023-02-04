@@ -30,6 +30,12 @@ app.use(formData.parse())
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/meals', mealsRouter)
+
+
+
+
+
+
 app.use('/api/exercises', exercisesRouter )
 
 // handle 404 errors
