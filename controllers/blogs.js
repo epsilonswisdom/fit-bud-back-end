@@ -17,6 +17,7 @@ const create = async (req, res) => {
     res.status(500).json(error)
   }
 }
+// console console 
 
 const index = async (req, res) => {
   try {
