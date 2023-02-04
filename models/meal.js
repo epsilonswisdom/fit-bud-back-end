@@ -15,3 +15,4 @@ const Meal = mongoose.model('Meal', mealSchema)
 export {
   Meal
 }
+
