@@ -53,10 +53,28 @@ const update = async (req, res) => {
     res.status(500).json(error)
   }
 }
+const deleteBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id)
+    if (blog.author.equals(req.user.profile)) {
+      await Blog.findByIdAndDelete(req.params.id)
+      const profile = await Profile.findById(req.user.profile)
+      profile.blogs.remove({ _id: req.params.id })
+      await profile.save()
+      res.status(200).json(blog)
+    } else {
+      throw new Error('Not authorized')
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
 
 export { 
   create,
   index,
   show,
   update,
+  deleteBlog as delete,
 }
