@@ -28,7 +28,7 @@ const index = async (req, res) => {
     res.status(500).json(error)
   }
 }
-// show function
+// show functionagagea
 const show = async (req, res) => {
   try {
     const meal = await Meal.findById(req.params.id)
