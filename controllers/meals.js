@@ -17,7 +17,19 @@ const create = async (req, res) => {
     res.status(500).json(error)
   }
 }
+//index functionality
+const index = async (req, res) => {
+  try {
+    const meals = await Meal.find({})
+    .populate('author')
+    .sort({ createdAt: 'desc' })
+    res.status(200).json(meals)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
 
 export {
   create,
+  index, 
 }
