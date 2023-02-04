@@ -9,6 +9,8 @@ const router = Router()
 
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
+router.get('/', checkAuth, blogsCtrl.index)
+router.get('/:id', checkAuth, blogsCtrl.show)
 router.post('/', checkAuth, blogsCtrl.create)
 
 export { router }
