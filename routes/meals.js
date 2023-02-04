@@ -14,5 +14,7 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, mealsCtrl.create)
 // GET route
 router.get('/', checkAuth, mealsCtrl.index)
+// GET route
+router.get('/:id', checkAuth, mealsCtrl.show)
 
 export { router }

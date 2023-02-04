@@ -28,8 +28,19 @@ const index = async (req, res) => {
     res.status(500).json(error)
   }
 }
+// show functionality
+const show = async (req, res) => {
+  try {
+    const meal = await Meal.findById(req.params.id)
+      .populate('author')
+    res.status(200).json(meal)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
 
 export {
   create,
   index, 
+  show,
 }
