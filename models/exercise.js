@@ -8,6 +8,16 @@ const exerciseSchema = new Schema(
       type: String,
       required: true,
     },
+    text: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+      enum: ['Cardio', 'Strength', 'Flexibility', 'Balance', 'Coordination'],
+    },
+    author: { type: Schema.Types.ObjectId, ref: 'Profile'}
   }
 )
 
