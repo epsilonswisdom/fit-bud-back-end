@@ -17,7 +17,32 @@ const create = async (req, res) => {
     res.status(500).json(error)
   }
 }
+// console console 
+
+const index = async (req, res) => {
+  try {
+    const blogs = await Blog.find({})
+      .populate('author')
+      .sort({ createdAt: 'desc' })
+    res.status(200).json(blogs)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const show = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id)
+      .populate('author')
+      .populate('comments.author')
+      res.status(200).json(blog)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
 
 export { 
   create,
+  index,
+  show,
 }
