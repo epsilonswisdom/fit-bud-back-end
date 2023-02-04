@@ -51,9 +51,29 @@ const update = async (req, res) => {
     res.status(500).json(error)
   }
 }
+
+const deleteMeal = async (req, res) => {
+  try {
+    const meal = await Meal.findById(req.params.id)
+    if (meal.author.equals(req.user.profile)) {
+      await Meal.findByIdAndDelete(req.params.id)
+      const profile = await Profile.findById(req.user.profile)
+      profile.meals.remove({ _id: req.params.id })
+      await profile.save()
+      res.status(200).json(meal)
+    } else {
+      throw new Error('Not authorized')
+    }
+  } catch (err) {
+    console.log(err) 
+    res.status(500).json(err)
+  }
+}
+
 export {
   create,
   index, 
   show,
   update,
+  deleteMeal as delete,
 }

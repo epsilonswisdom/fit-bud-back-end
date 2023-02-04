@@ -18,4 +18,7 @@ router.get('/', checkAuth, mealsCtrl.index)
 router.get('/:id', checkAuth, mealsCtrl.show)
 // PUT Route
 router.put('/:id', checkAuth, mealsCtrl.update)
+// DELETE route
+router.delete('/:id', checkAuth, mealsCtrl.delete)
+
 export { router }
