@@ -16,5 +16,6 @@ router.post('/', checkAuth, mealsCtrl.create)
 router.get('/', checkAuth, mealsCtrl.index)
 // GET route
 router.get('/:id', checkAuth, mealsCtrl.show)
-
+// PUT Route
+router.put('/:id', checkAuth, mealsCtrl.update)
 export { router }
