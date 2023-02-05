@@ -19,6 +19,18 @@ const create = async (req, res) => {
   }
 }
 
+const index = async (req, res) => {
+  try {
+    const exercises = await Exercise.find({})
+    .populate('author')
+    .sort({ createdAt: 'desc' })
+    res.status(200).json(exercises)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
+  index
 }
