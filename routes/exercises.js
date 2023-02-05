@@ -10,6 +10,8 @@ const router = Router()
 router.use(decodeUserFromToken)
 // GET Route
 router.get('/', checkAuth, exercisesCtrl.index)
+// Show Route
+router.get('/:id', checkAuth, exercisesCtrl.show)
 //Post Route
 router.post('/', checkAuth, exercisesCtrl.create)
 // PUT Route

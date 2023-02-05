@@ -30,6 +30,16 @@ const index = async (req, res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+    const exercise = await Exercise.findById(req.params.id)
+    .populate('author')
+    res.status(200).json(exercise)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 const update = async (req, res) => {
   try {
     const exercise = await Exercise.findByIdAndUpdate(
@@ -64,6 +74,7 @@ const deleteExercise = async (req, res) => {
 export {
   create,
   index,
+  show,
   update,
   deleteExercise as delete,
 }
