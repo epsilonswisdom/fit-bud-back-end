@@ -43,9 +43,27 @@ const update = async (req, res) => {
     res.status(500).json(error)
   }
 }
+const deleteExercise = async (req, res) => {
+  try {
+    const exercise = await Exercise.findById(req.params.id)
+    if (exercise.author.equals(req.user.profile)) {
+      await Exercise.findByIdAndDelete(req.params.id)
+      const profile = await Profile.findById(req.user.profile)
+      profile.exercises.remove({ _id: req.params.id })
+      await profile.save()
+      res.status(200).json(exercise)
+    } else {
+      throw new Error('Not authorized')
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
 
 export {
   create,
   index,
-  update
+  update,
+  deleteExercise as delete,
 }
