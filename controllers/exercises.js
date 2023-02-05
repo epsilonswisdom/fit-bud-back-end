@@ -30,7 +30,22 @@ const index = async (req, res) => {
   }
 }
 
+const update = async (req, res) => {
+  try {
+    const exercise = await Exercise.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    ).populate('author')
+    res.status(200).json(exercise)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
-  index
+  index,
+  update
 }

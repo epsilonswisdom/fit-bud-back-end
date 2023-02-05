@@ -13,4 +13,7 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, exercisesCtrl.create)
 // GET Route
 router.get('/', checkAuth, exercisesCtrl.index)
+// PUT Route
+router.put('/:id', checkAuth, exercisesCtrl.update)
+
 export {router}
