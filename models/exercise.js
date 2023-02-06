@@ -18,7 +18,8 @@ const exerciseSchema = new Schema(
       enum: ['Cardio', 'Strength', 'Flexibility', 'Balance', 'Coordination'],
     },
     author: { type: Schema.Types.ObjectId, ref: 'Profile'}
-  }
+  },
+  {timestamps: true}
 )
 
 const Exercise = mongoose.model('Exercise', exerciseSchema)
