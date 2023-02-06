@@ -31,7 +31,7 @@ function addPhoto(req, res) {
 
   const show = async (req, res) => {
     try {
-      const blog = await Blog.findById(req.params.id)
+      const profile = await Profile.findById(req.params.id)
         .populate('author')
         .populate('comments.author')
         res.status(200).json(blog)

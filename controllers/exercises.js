@@ -30,7 +30,51 @@ const index = async (req, res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+    const exercise = await Exercise.findById(req.params.id)
+    .populate('author')
+    res.status(200).json(exercise)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const update = async (req, res) => {
+  try {
+    const exercise = await Exercise.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    ).populate('author')
+    res.status(200).json(exercise)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+const deleteExercise = async (req, res) => {
+  try {
+    const exercise = await Exercise.findById(req.params.id)
+    if (exercise.author.equals(req.user.profile)) {
+      await Exercise.findByIdAndDelete(req.params.id)
+      const profile = await Profile.findById(req.user.profile)
+      profile.exercises.remove({ _id: req.params.id })
+      await profile.save()
+      res.status(200).json(exercise)
+    } else {
+      throw new Error('Not authorized')
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 export {
   create,
-  index
+  index,
+  show,
+  update,
+  deleteExercise as delete,
 }
