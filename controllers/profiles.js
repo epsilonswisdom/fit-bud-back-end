@@ -29,4 +29,20 @@ function addPhoto(req, res) {
   })
 }
 
-export { index, addPhoto }
+  const show = async (req, res) => {
+    try {
+      const blog = await Blog.findById(req.params.id)
+        .populate('author')
+        .populate('comments.author')
+        res.status(200).json(blog)
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  }
+
+
+export { 
+  index, 
+  addPhoto, 
+  show,
+}
