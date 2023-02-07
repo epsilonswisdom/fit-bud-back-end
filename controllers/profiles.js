@@ -32,7 +32,9 @@ function addPhoto(req, res) {
   const show = async (req, res) => {
     try {
       const profile = await Profile.findById(req.params.id)
-        res.status(200).json(blog)
+      .populate('meals')
+      .populate('exercises')
+        res.status(200).json(profile)
     } catch (error) {
       res.status(500).json(error)
     }
