@@ -70,10 +70,29 @@ const deleteMeal = async (req, res) => {
   }
 }
 
+const createComment = async (req, res) => {
+  try {
+    req.body.author = req.user.profile
+    const meal = await Meal.findById(req.params.id)
+    meal.comments.push(req.body)
+    await meal.save()
+
+    const newComment = meal.comments[meal.comments.length - 1]
+
+    const profile = await Profile.findById(req.user.profile)
+    newComment.author = profile
+
+    res.status(201).json(newComment)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   index, 
   show,
   update,
   deleteMeal as delete,
+  createComment
 }

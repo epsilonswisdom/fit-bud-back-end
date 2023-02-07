@@ -10,15 +10,18 @@ const router = Router()
 // ========= Protected Routes ========= 
 
 router.use(decodeUserFromToken)
-//POST Route
-router.post('/', checkAuth, mealsCtrl.create)
 // GET route
 router.get('/', checkAuth, mealsCtrl.index)
 // GET route
 router.get('/:id', checkAuth, mealsCtrl.show)
+//POST Route
+router.post('/', checkAuth, mealsCtrl.create)
+// POST Route
+router.post('/:id/comments', checkAuth, mealsCtrl.createComment)
 // PUT Route
 router.put('/:id', checkAuth, mealsCtrl.update)
 // DELETE route
 router.delete('/:id', checkAuth, mealsCtrl.delete)
+
 
 export { router }
