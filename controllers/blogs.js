@@ -7,7 +7,7 @@ const create = async (req, res) => {
     const blog = await Blog.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
       req.user.profile,
-      { $push: { blogs: blog } },
+      { $push: { blogs: blog } }, 
       { new: true }
     )
     blog.author = profile

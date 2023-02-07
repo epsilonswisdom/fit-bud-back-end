@@ -26,7 +26,7 @@ const blogSchema = new Schema(
     category: {
       type: String,
       reqiured: true,
-      enum: ['Mental-health', 'Diet', 'Cardio','Lifestyle']
+      enum: ['Exercise', 'Gym', 'Food', 'Supplements', 'Personal Journey', 'Other']
     },
     comments: [commentSchema],
     author: { type: Schema.Types.ObjectId, ref: 'Profile' }
