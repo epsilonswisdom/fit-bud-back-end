@@ -43,11 +43,11 @@ function addPhoto(req, res) {
   const createComment = async (req, res) => {
     try {
       req.body.author = req.user.profile
-      const blog = await Blog.findById(req.params.id)
-      blog.comments.push(req.body)
-      await blog.save()
+      const profiles = await Profile.findById(req.params.id)
+      profiles.comments.push(req.body)
+      await profiles.save()
   
-      const newComment = blog.comments[blog.comments.length - 1]
+      const newComment = profiles.comments[profiles.comments.length - 1]
   
       const profile = await Profile.findById(req.user.profile)
       newComment.author = profile
@@ -58,9 +58,22 @@ function addPhoto(req, res) {
     }
   }
 
+  const updateComment = async (req, res) => {
+    try {
+      const profile = await Profile.findById(req.params.profileId)
+      const comment = profile.comments.id(req.params.commentId)
+      comment.text = req.body.text
+      await profile.save()
+      res.status(200).json(profile)
+    } catch (error) {
+      res.status(500).json(err)
+    }
+  }
+
 export { 
   index, 
   addPhoto, 
   show,
   createComment,
+  updateComment,
 }
