@@ -23,6 +23,7 @@ const index = async (req, res) => {
   try {
     const exercises = await Exercise.find({})
     .populate('author')
+    .populate('comments.author')
     .sort({ createdAt: 'desc' })
     res.status(200).json(exercises)
   } catch (error) {

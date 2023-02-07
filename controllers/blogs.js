@@ -23,6 +23,7 @@ const index = async (req, res) => {
   try {
     const blogs = await Blog.find({})
       .populate('author')
+      .populate('comments.author')
       .sort({ createdAt: 'desc' })
     res.status(200).json(blogs)
   } catch (error) {
