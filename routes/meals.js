@@ -20,6 +20,8 @@ router.post('/', checkAuth, mealsCtrl.create)
 router.post('/:id/comments', checkAuth, mealsCtrl.createComment)
 // PUT Route
 router.put('/:id', checkAuth, mealsCtrl.update)
+// PUT Route
+router.put('/:mealId/comments/:commentId', checkAuth, mealsCtrl.updateComment)
 // DELETE route
 router.delete('/:id', checkAuth, mealsCtrl.delete)
 
