@@ -2,6 +2,17 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema
 
+const commentSchema = new
+Schema(
+  {
+    text: {
+      type: String,
+      required: true
+    },
+    author: { type:Schema.Types.ObjectId, ref: 'Profile' }
+  },
+  {timestamps: true}
+)
 const exerciseSchema = new Schema(
   {
     title: {
@@ -17,6 +28,7 @@ const exerciseSchema = new Schema(
       required: true,
       enum: ['Cardio', 'Strength', 'Flexibility', 'Balance', 'Coordination'],
     },
+    comments: [commentSchema],
     author: { type: Schema.Types.ObjectId, ref: 'Profile'}
   },
   {timestamps: true}
