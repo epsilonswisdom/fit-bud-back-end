@@ -14,5 +14,6 @@ router.get('/:id', checkAuth, profilesCtrl.show)
 router.post('/:id/comments', checkAuth, profilesCtrl.createComment)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
 router.put('/:profileId/comments/:commentId', checkAuth, profilesCtrl.updateComment)
+router.delete('/:profileId/comments/:commentId', checkAuth, profilesCtrl.deleteComment)
 
 export { router }

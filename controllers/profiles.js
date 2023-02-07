@@ -70,10 +70,23 @@ function addPhoto(req, res) {
     }
   }
 
+  const deleteComment = async (req, res) => {
+    try {
+      const profile = await Profile.findById(req.params.profileId)
+      profile.comments.remove({ _id: req.params.commentId })
+      await profile.save()
+      res.status(200).json(profile)
+    } catch (error) {
+      res.status(500).json(err)
+    }
+  }
+
+
 export { 
   index, 
   addPhoto, 
   show,
   createComment,
   updateComment,
+  deleteComment
 }
