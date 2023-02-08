@@ -66,8 +66,8 @@ const deleteExercise = async (req, res) => {
     } else {
       throw new Error('Not authorized')
     }
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
     res.status(500).json(err)
   }
 }
@@ -96,8 +96,8 @@ const updateComment = async (req, res) => {
     comment.text = req.body.text
     await exercise.save()
     res.status(200).json(exercise)
-  } catch (err) {
-    res.status(500).json(err)
+  } catch (error) {
+    res.status(500).json(error)
   }
 }
 const deleteComment = async (req, res) => {
@@ -106,8 +106,8 @@ const deleteComment = async (req, res) => {
     exercise.comments.remove({ _id: req.params.commentId})
     await exercise.save()
     res.status(200).json(exercise)
-  } catch (err) {
-    res.status(500).json(err)
+  } catch (error) {
+    res.status(500).json(error)
   }
 }
 export {

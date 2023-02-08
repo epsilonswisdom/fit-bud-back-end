@@ -22,5 +22,7 @@ router.post('/:id/comments', checkAuth, exercisesCtrl.createComment)
 router.put('/:exerciseId/comments/:commentId', checkAuth, exercisesCtrl.updateComment)
 // Delete Route
 router.delete('/:id', checkAuth, exercisesCtrl.delete)
+// Delete Route for Comment
+router.delete('/:exerciseId/comments/:commentId', checkAuth, exercisesCtrl.deleteComment)
 
 export {router}
