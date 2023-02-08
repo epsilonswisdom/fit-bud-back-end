@@ -101,12 +101,26 @@ const updateComment = async (req, res) => {
   }
 }
 
+const deleteComment = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.blogId)
+    blog.comments.remove({ _id: req.params.commentId })
+    await blog.save()
+    res.status(200).json(blog)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
 export {
-	create,
-	index,
-	show,
-	update,
-	deleteBlog as delete,
   createComment,
   updateComment,
+  deleteComment,
+
+  // Blog Controller Functions
+  create,
+  index,
+  show,
+  update,
+  deleteBlog as delete
 }
