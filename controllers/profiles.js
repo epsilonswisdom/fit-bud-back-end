@@ -5,8 +5,8 @@ function index(req, res) {
   Profile.find({})
   .then(profiles => res.json(profiles))
   .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
+    console.log(error)
+    res.status(500).json(error)
   })
 }
 
@@ -22,9 +22,9 @@ function addPhoto(req, res) {
         res.status(201).json(profile.photo)
       })
     })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json(err)
+    .catch(error => {
+      console.log(error)
+      res.status(500).json(error)
     })
   })
 }
@@ -67,7 +67,7 @@ function addPhoto(req, res) {
       await profile.save()
       res.status(200).json(profile)
     } catch (error) {
-      res.status(500).json(err)
+      res.status(500).json(error)
     }
   }
 
@@ -78,7 +78,7 @@ function addPhoto(req, res) {
       await profile.save()
       res.status(200).json(profile)
     } catch (error) {
-      res.status(500).json(err)
+      res.status(500).json(error)
     }
   }
 

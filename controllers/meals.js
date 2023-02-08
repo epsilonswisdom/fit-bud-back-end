@@ -101,6 +101,17 @@ const updateComment = async (req, res) => {
   }
 }
 
+const deleteComment = async (req, res) => {
+  try {
+    const meal = await Meal.findById(req.params.mealId)
+    meal.comments.remove({ _id: req.params.commentId })
+    await meal.save()
+    res.status(200).json(meal)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   index, 
@@ -109,5 +120,5 @@ export {
   deleteMeal as delete,
   createComment,
   updateComment,
-  
+  deleteComment,
 }
