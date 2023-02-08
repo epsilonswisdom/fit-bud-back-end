@@ -79,10 +79,10 @@ const createComment = async (req, res) => {
   exercise.comments.push(req.body)
   await exercise.save()
 
-  const NewComment = exercise.comments[exercise.comments.length - 1]
+  const newComment = exercise.comments[exercise.comments.length - 1]
 
   const profile = await Profile.findById(req.user.profile)
-  NewComment.author = profile
+  newComment.author = profile
 
   res.status(201).json(newComment)  
  } catch (error) {
