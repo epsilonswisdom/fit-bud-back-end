@@ -16,6 +16,10 @@ router.get('/:id', checkAuth, exercisesCtrl.show)
 router.post('/', checkAuth, exercisesCtrl.create)
 // PUT Route
 router.put('/:id', checkAuth, exercisesCtrl.update)
+// Post Route Create Comment Card
+router.post('/:id/comments', checkAuth, exercisesCtrl.createComment)
+// Put Exercise Comment Card Route
+router.put('/:exerciseId/comments/:commentId', checkAuth, exercisesCtrl.updateComment)
 // Delete Route
 router.delete('/:id', checkAuth, exercisesCtrl.delete)
 
