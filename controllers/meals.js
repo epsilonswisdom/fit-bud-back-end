@@ -17,7 +17,7 @@ const create = async (req, res) => {
     res.status(500).json(error)
   }
 }
-//index functionality
+
 const index = async (req, res) => {
   try {
     const meals = await Meal.find({})
@@ -28,7 +28,7 @@ const index = async (req, res) => {
     res.status(500).json(error)
   }
 }
-// show functionality
+
 const show = async (req, res) => {
   try {
     const meal = await Meal.findById(req.params.id)
@@ -108,6 +108,17 @@ const deleteComment = async (req, res) => {
     await meal.save()
     res.status(200).json(meal)
   } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const addToMealPlan = async (req, res) => {
+  try {
+    const meals = await Meal.find({})
+    const mealPlans = meals.filter(meal => {
+
+    })
+  }catch (error) {
     res.status(500).json(error)
   }
 }

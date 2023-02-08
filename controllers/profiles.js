@@ -34,6 +34,7 @@ function addPhoto(req, res) {
       const profile = await Profile.findById(req.params.id)
       .populate('meals')
       .populate('exercises')
+      .populate('blogs')
       .populate('comments.author')
         res.status(200).json(profile)
     } catch (error) {
