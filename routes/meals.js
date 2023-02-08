@@ -24,6 +24,8 @@ router.put('/:id', checkAuth, mealsCtrl.update)
 router.put('/:mealId/comments/:commentId', checkAuth, mealsCtrl.updateComment)
 // DELETE route
 router.delete('/:id', checkAuth, mealsCtrl.delete)
+// DELETE Route
+router.delete('/:mealId/comments/:commentId', checkAuth, mealsCtrl.deleteComment)
 
 
 export { router }
