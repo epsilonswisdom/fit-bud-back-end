@@ -17,13 +17,11 @@ const create = async (req, res) => {
     res.status(500).json(error)
   }
 }
-// console console 
 
 const index = async (req, res) => {
   try {
     const blogs = await Blog.find({})
       .populate('author')
-      .populate('comments.author')
       .sort({ createdAt: 'desc' })
     res.status(200).json(blogs)
   } catch (error) {
@@ -54,6 +52,7 @@ const update = async (req, res) => {
     res.status(500).json(error)
   }
 }
+
 const deleteBlog = async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id)
