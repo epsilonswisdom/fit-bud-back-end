@@ -71,7 +71,49 @@ const deleteExercise = async (req, res) => {
   }
 }
 
+const createComment = async (req, res) => {
+  try{
+  req.body.author = req.user.profile
+  const exercise = await Exercise.findById(req.params.id)
+  exercise.comments.push(req.body)
+  await exercise.save()
+
+  const NewComment = exercise.comments[exercise.comments.length - 1]
+
+  const profile = await Profile.findById(req.user.profile)
+  NewComment.author = profile
+
+  res.status(201).json(newComment)  
+ } catch (error) {
+  res.status(500).json(error)
+ }
+}
+const updateComment = async (req, res) => {
+  try {
+    const exercise = await Exercise.findById(req.params.exerciseId)
+    const comment = exercise.comments.id(req.params.commentId)
+    comment.text = req.body.text
+    await exercise.save()
+    res.status(200).json(exercise)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+const deleteComment = async (req, res) => {
+  try {
+    const exercise =await Exercise.findById(req.params.exerciseId)
+    exercise.comments.remove({ _id: req.params.commentId})
+    await exercise.save()
+    res.status(200).json(exercise)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 export {
+  createComment,
+  updateComment,
+  deleteComment,
+
   create,
   index,
   show,
