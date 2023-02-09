@@ -83,6 +83,19 @@ function addPhoto(req, res) {
     }
   }
 
+  const addToMealPlan = async (req, res) => {
+    try {
+      req.body.author = req.user.profile
+      const profile = await Profile.findById(req.params.id)
+      profile.mealPlans.push(req.body)
+      await profile.save()
+      const meal = Meal.findById(req.meal.id)
+      const newMeal = profile.mealPlans[profile.mealPlans.length - 1]
+      res.status(201).json(newMeal)
+    }catch (error) {
+      res.status(500).json(error)
+    }
+  }
 
 export { 
   index, 
@@ -90,5 +103,6 @@ export {
   show,
   createComment,
   updateComment,
-  deleteComment
+  deleteComment,
+  addToMealPlan
 }

@@ -112,16 +112,7 @@ const deleteComment = async (req, res) => {
   }
 }
 
-const addToMealPlan = async (req, res) => {
-  try {
-    const meals = await Meal.find({})
-    const mealPlans = meals.filter(meal => {
 
-    })
-  }catch (error) {
-    res.status(500).json(error)
-  }
-}
 
 export {
   create,
