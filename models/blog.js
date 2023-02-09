@@ -28,6 +28,7 @@ const blogSchema = new Schema(
       reqiured: true,
       enum: ['Exercise', 'Gym', 'Food', 'Supplements', 'Personal Journey', 'Other']
     },
+    image: String,
     comments: [commentSchema],
     author: { type: Schema.Types.ObjectId, ref: 'Profile' }
   },

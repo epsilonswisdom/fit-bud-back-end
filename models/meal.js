@@ -17,6 +17,7 @@ const mealSchema = new Schema ({
   name: String,
   author: { type: Schema.Types.ObjectId, ref: "Profile"},
   description: String,
+  image: String,
   comments: [ commentSchema ]
 }, {
   timestamps: true
