@@ -21,7 +21,7 @@ const mealSchema = new Schema ({
   category: {
     type: String,
     required: true,
-    enum: ['Snack', 'Protein', 'Fruit', 'Organic', 'Cheat Meal'],
+    enum: ['Snack', 'Protein', 'Fruit', 'Organic', 'CheatMeal'],
   },
   comments: [ commentSchema ],
 }, {

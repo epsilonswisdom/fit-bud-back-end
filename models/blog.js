@@ -26,7 +26,7 @@ const blogSchema = new Schema(
     category: {
       type: String,
       reqiured: true,
-      enum: ['Exercise', 'Gym', 'Food', 'Supplements', 'Personal Journey', 'Other']
+      enum: ['Exercise', 'Gym', 'Food', 'Supplements', 'PersonalJourney', 'Other']
     },
     // image: String,
     comments: [commentSchema],
