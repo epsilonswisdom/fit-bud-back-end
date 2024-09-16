@@ -35,6 +35,7 @@ const show = async (req, res) => {
   try {
     const exercise = await Exercise.findById(req.params.id)
     .populate('author')
+    .populate('comments.author')
     res.status(200).json(exercise)
   } catch (error) {
     res.status(500).json(error)
@@ -74,20 +75,20 @@ const deleteExercise = async (req, res) => {
 
 const createComment = async (req, res) => {
   try{
-  req.body.author = req.user.profile
-  const exercise = await Exercise.findById(req.params.id)
-  exercise.comments.push(req.body)
-  await exercise.save()
+    req.body.author = req.user.profile
+    const exercise = await Exercise.findById(req.params.id)
+    exercise.comments.push(req.body)
+    await exercise.save()
 
-  const newComment = exercise.comments[exercise.comments.length - 1]
+    const newComment = exercise.comments[exercise.comments.length - 1]
 
-  const profile = await Profile.findById(req.user.profile)
-  newComment.author = profile
+    const profile = await Profile.findById(req.user.profile)
+    newComment.author = profile
 
-  res.status(201).json(newComment)  
- } catch (error) {
+    res.status(201).json(newComment)  
+  } catch (error) {
   res.status(500).json(error)
- }
+  }
 }
 const updateComment = async (req, res) => {
   try {
@@ -102,7 +103,7 @@ const updateComment = async (req, res) => {
 }
 const deleteComment = async (req, res) => {
   try {
-    const exercise =await Exercise.findById(req.params.exerciseId)
+    const exercise = await Exercise.findById(req.params.exerciseId)
     exercise.comments.remove({ _id: req.params.commentId})
     await exercise.save()
     res.status(200).json(exercise)

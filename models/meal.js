@@ -16,8 +16,14 @@ const commentSchema = new Schema(
 const mealSchema = new Schema ({
   name: String,
   author: { type: Schema.Types.ObjectId, ref: "Profile"},
+  // image: String,
   description: String,
-  comments: [ commentSchema ]
+  category: {
+    type: String,
+    required: true,
+    enum: ['Snack', 'Protein', 'Fruit', 'Organic', 'CheatMeal'],
+  },
+  comments: [ commentSchema ],
 }, {
   timestamps: true
 })

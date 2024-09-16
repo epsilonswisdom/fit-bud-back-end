@@ -18,7 +18,6 @@ const profileSchema = new Schema({
   photo: String,
   blogs: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   meals: [{ type: Schema.Types.ObjectId, ref: 'Meal' }],
-  mealPlans: [],
   exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
   comments: [commentSchema],
   author: { type: Schema.Types.ObjectId, ref: 'Profile' }

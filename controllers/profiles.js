@@ -83,12 +83,11 @@ function addPhoto(req, res) {
     }
   }
 
-
 export { 
   index, 
   addPhoto, 
   show,
   createComment,
   updateComment,
-  deleteComment
+  deleteComment,
 }

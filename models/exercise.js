@@ -27,6 +27,7 @@ const exerciseSchema = new Schema(
       required: true,
       enum: ['Cardio', 'Strength', 'Flexibility', 'Balance', 'Coordination'],
     },
+    // image: String,
     comments: [commentSchema],
     author: { type: Schema.Types.ObjectId, ref: 'Profile'}
   },
